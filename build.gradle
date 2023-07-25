@@ -10,7 +10,7 @@ repositories {
 
 def selenideVersion = "6.13.0",
     restAssuredVersion = "5.3.0",
-    allureVersion = "2.21.0",
+    allureVersion = "2.22.0",
     junitVersion = "5.9.3",
     slf4jVersion = "2.0.7"
 
@@ -38,6 +38,8 @@ dependencies {
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
             'org.aeonbits.owner:owner-java8:1.0.12',
+            "commons-io:commons-io:2.11.0"
+
     )
 }
 
@@ -50,8 +52,20 @@ tasks.withType(Test) {
         }
     }
 }
-task mobile(type: Test) {
+task android(type: Test) {
     useJUnitPlatform {
-        includeTags 'mobile'
+        includeTags 'android'
+    }
+}
+
+task ios(type: Test) {
+    useJUnitPlatform {
+        includeTags 'ios'
+    }
+}
+
+task android_local(type: Test) {
+    useJUnitPlatform {
+        includeTags 'android_local'
     }
 }

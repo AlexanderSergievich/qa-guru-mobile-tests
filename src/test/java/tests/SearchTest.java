@@ -13,12 +13,12 @@ import static io.qameta.allure.Allure.step;
 public class SearchTest extends TestBase {
 
     @Test
-    @Tag("mobile")
+    @Tag("android_local")
     @DisplayName("Successful search")
     void successfulSearchTest() {
         step("Type search", () -> {
             $(AppiumBy.accessibilityId("Search Wikipedia")).click();
-            $(AppiumBy.id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Pygmalion_effect");
+            $(AppiumBy.id("org.wikipedia.alpha:id/search_src_text")).setValue("Pygmalion_effect");
         });
         step("Verify content found", () ->
                 $$(AppiumBy.id("org.wikipedia.alpha:id/page_list_item_container"))
