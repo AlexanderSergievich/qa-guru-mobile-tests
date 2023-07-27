@@ -21,6 +21,7 @@ public interface MobileConfig extends Config {
     String mobileDevice();
 
     @Key("mobile.app.path")
+    @DefaultValue("src/test/resources/app/app-alpha-universal-release.apk")
     String mobileAppPath();
 
     @Key("mobile.platformName")

@@ -3,8 +3,8 @@ package helpers;
 import configs.BrowserstackConfig;
 import org.aeonbits.owner.ConfigFactory;
 
-import static java.lang.String.format;
 import static io.restassured.RestAssured.given;
+import static java.lang.String.format;
 
 public class Browserstack {
     static BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());

@@ -13,30 +13,40 @@ import org.junit.jupiter.api.BeforeEach;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TestBase {
+    public static String deviceHost = System.getProperty("deviceHost");
 
 
     @BeforeAll
     static void beforeAll() {
-        switch (System.getProperty("deviceHost")) {
-            case "mobile" -> Configuration.browser = BrowserstackDriver.class.getName();
-            case "android" -> Configuration.browser = AppiumDriver.class.getName();
+        if (deviceHost == null) {
+            deviceHost = "android";
+        }
+
+        switch (deviceHost) {
+            case "browser":
+                Configuration.browser = BrowserstackDriver.class.getName();
+                break;
+            case "android":
+                Configuration.browser = AppiumDriver.class.getName();
+                break;
         }
         Configuration.browserSize = null;
-        //Configuration.browserBinary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+        Configuration.browserBinary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
     }
-
     @BeforeEach
     void addListener() {
-        open();
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        open();
     }
 
-    @AfterEach
-    void afterEach() {
-        String sessionId = sessionId().toString();
-        Attach.pageSource();
-        closeWebDriver();
-        Attach.addVideo(sessionId);
-    }
+//    @AfterEach
+//    void afterEach() {
+//        String sessionId = sessionId().toString();
+//        Attach.pageSource();
+//        closeWebDriver();
+//        if (!deviceHost.equals("android")) {
+//            Attach.addVideo(sessionId);
+//        }
+//    }
 }
