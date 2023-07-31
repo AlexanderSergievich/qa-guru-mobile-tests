@@ -23,7 +23,7 @@ public class TestBase {
         }
 
         switch (deviceHost) {
-            case "browser":
+            case "mobile":
                 Configuration.browser = BrowserstackDriver.class.getName();
                 break;
             case "android":
@@ -40,13 +40,13 @@ public class TestBase {
         open();
     }
 
-//    @AfterEach
-//    void afterEach() {
-//        String sessionId = sessionId().toString();
-//        Attach.pageSource();
-//        closeWebDriver();
-//        if (!deviceHost.equals("android")) {
-//            Attach.addVideo(sessionId);
-//        }
-//    }
+    @AfterEach
+    void afterEach() {
+        String sessionId = sessionId().toString();
+        Attach.pageSource();
+        closeWebDriver();
+        if (!deviceHost.equals("android")) {
+            Attach.addVideo(sessionId);
+        }
+    }
 }

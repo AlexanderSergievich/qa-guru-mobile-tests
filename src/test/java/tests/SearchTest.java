@@ -10,6 +10,7 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.given;
 
 public class SearchTest extends TestBase {
 
